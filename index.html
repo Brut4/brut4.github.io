@@ -2,72 +2,41 @@
 <html>
 <head>
 
-<title>Pro Video Downloader</title>
+<title>Brut4 Hacker Portfolio</title>
 
 <style>
 
 body{
+background:black;
+color:#00ff9c;
+font-family:monospace;
 margin:0;
-font-family:Arial;
-background:#0f172a;
-color:white;
-text-align:center;
+padding:20px;
 }
 
-header{
-background:#020617;
-padding:15px;
-font-size:22px;
-font-weight:bold;
+#boot{
+white-space:pre-line;
 }
 
-.container{
-margin-top:80px;
-}
-
-.box{
-background:#1e293b;
-width:380px;
-margin:auto;
-padding:30px;
-border-radius:12px;
-}
-
-input{
-width:90%;
-padding:12px;
-border-radius:8px;
-border:none;
-margin-top:10px;
-}
-
-button{
-margin-top:15px;
-padding:12px 20px;
-border:none;
-border-radius:8px;
-background:#22c55e;
-color:white;
-font-weight:bold;
-cursor:pointer;
-}
-
-button:hover{
-background:#16a34a;
-}
-
-.preview{
+#terminal{
+display:none;
+border:1px solid #00ff9c;
+padding:20px;
 margin-top:20px;
-}
-
-video{
-width:90%;
 border-radius:10px;
 }
 
-footer{
-margin-top:60px;
-opacity:0.6;
+input{
+background:black;
+border:none;
+color:#00ff9c;
+outline:none;
+font-family:monospace;
+width:90%;
+}
+
+.line{
+margin:5px 0;
 }
 
 </style>
@@ -76,72 +45,105 @@ opacity:0.6;
 
 <body>
 
-<header>
-Pro Video Downloader
-</header>
+<div id="boot"></div>
 
-<div class="container">
-
-<div class="box">
-
-<h2>Download Video</h2>
-
-<p>Instagram • TikTok • YouTube</p>
-
-<input id="url" placeholder="Paste video link disini">
-
-<br>
-
-<button onclick="preview()">Preview</button>
-
-<div class="preview" id="preview"></div>
-
+<div id="terminal">
+<div class="line">Brut4 Terminal</div>
+<div class="line">type "help"</div>
 </div>
 
+<div id="inputArea" style="display:none">
+> <input id="cmd" autofocus>
 </div>
-
-<footer>
-Website by Brut4
-</footer>
 
 <script>
 
-function preview(){
+const bootText = [
+"Booting Brut4 System...",
+"Loading modules...",
+"Connecting server...",
+"Initializing hacker interface...",
+"Access granted...",
+"Welcome Brut4"
+]
 
-let link = document.getElementById("url").value
+let i = 0
 
-if(link === ""){
-alert("Masukkan link dulu")
-return
+function boot(){
+
+if(i < bootText.length){
+
+document.getElementById("boot").innerHTML += bootText[i] + "\n"
+
+i++
+
+setTimeout(boot,700)
+
+}else{
+
+document.getElementById("boot").style.display="none"
+
+document.getElementById("terminal").style.display="block"
+
+document.getElementById("inputArea").style.display="block"
+
 }
 
-document.getElementById("preview").innerHTML =
-"<p>Preview tidak tersedia langsung.<br>Klik tombol download dibawah.</p>" +
-"<br><button onclick='download()'>Download Video</button>"
-
 }
 
-function download(){
+boot()
 
-let link = document.getElementById("url").value
+const terminal = document.getElementById("terminal")
+const input = document.getElementById("cmd")
 
-if(link.includes("instagram")){
-window.open("https://saveinsta.app/en1?url=" + link))
+input.addEventListener("keydown",function(e){
+
+if(e.key === "Enter"){
+
+let command = input.value
+
+let line = document.createElement("div")
+line.className="line"
+line.textContent="> "+command
+
+terminal.appendChild(line)
+
+let res = document.createElement("div")
+res.className="line"
+
+if(command==="help"){
+res.textContent="about, skills, projects, contact"
 }
 
-else if(link.includes("tiktok")){
-window.open("https://snaptik.app/?url=" + link)
+else if(command==="about"){
+res.textContent="I am Brut4 learning web development."
 }
 
-else if(link.includes("youtube")){
-window.open("https://yt1s.com/en?q=" + link)
+else if(command==="skills"){
+res.textContent="HTML, CSS, JavaScript"
+}
+
+else if(command==="projects"){
+res.textContent="Instagram Downloader Website, Portfolio Website"
+}
+
+else if(command==="contact"){
+res.innerHTML='Instagram: <a href="https://instagram.com" style="color:#00ff9c">open</a>'
 }
 
 else{
-alert("Link tidak dikenali")
+res.textContent="command not found"
 }
 
+terminal.appendChild(res)
+
+input.value=""
+
+window.scrollTo(0,document.body.scrollHeight)
+
 }
+
+})
 
 </script>
 

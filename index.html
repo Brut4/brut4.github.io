@@ -2,41 +2,125 @@
 <html>
 <head>
 
-<title>Brut4 Hacker Portfolio</title>
+<title>Brut4 Portfolio</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
-body{
-background:black;
-color:#00ff9c;
-font-family:monospace;
+*{
 margin:0;
-padding:20px;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
 }
 
-#boot{
-white-space:pre-line;
+body{
+background:#0f172a;
+color:white;
 }
 
-#terminal{
-display:none;
-border:1px solid #00ff9c;
-padding:20px;
-margin-top:20px;
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:#020617;
+position:sticky;
+top:0;
+}
+
+nav h2{
+color:#38bdf8;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:80px 20px;
+background:linear-gradient(135deg,#2563eb,#9333ea);
+}
+
+.profile{
+width:120px;
+border-radius:50%;
+border:4px solid white;
+margin-bottom:15px;
+}
+
+.hero h1{
+font-size:35px;
+}
+
+.hero p{
+margin:10px 0 20px;
+}
+
+/* SOCIAL BUTTON */
+
+.btn{
+display:inline-block;
+margin:8px;
+padding:12px 18px;
+background:white;
+color:black;
+text-decoration:none;
 border-radius:10px;
+font-weight:bold;
+transition:0.3s;
 }
 
-input{
-background:black;
-border:none;
-color:#00ff9c;
-outline:none;
-font-family:monospace;
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* SECTION */
+
+.container{
 width:90%;
+max-width:1000px;
+margin:auto;
+padding:40px 0;
 }
 
-.line{
-margin:5px 0;
+.section-title{
+margin-bottom:20px;
+}
+
+/* PROJECTS */
+
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.project{
+background:#1e293b;
+padding:20px;
+border-radius:12px;
+transition:0.3s;
+}
+
+.project:hover{
+transform:translateY(-5px);
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:30px;
+opacity:0.7;
 }
 
 </style>
@@ -45,107 +129,63 @@ margin:5px 0;
 
 <body>
 
-<div id="boot"></div>
+<nav>
 
-<div id="terminal">
-<div class="line">Brut4 Terminal</div>
-<div class="line">type "help"</div>
+<h2>Brut4</h2>
+
+<div>
+<a href="#">Home</a>
+<a href="#">Projects</a>
+<a href="#">Contact</a>
 </div>
 
-<div id="inputArea" style="display:none">
-> <input id="cmd" autofocus>
+</nav>
+
+<section class="hero">
+
+<img class="profile" src="https://i.imgur.com/4M34hi2.png">
+
+<h1>Brut4</h1>
+
+<p>Web Developer Beginner</p>
+
+<a class="btn" href="https://instagram.com/USERNAME">Instagram</a>
+<a class="btn" href="https://facebook.com/USERNAME">Facebook</a>
+<a class="btn" href="https://tiktok.com/@USERNAME">TikTok</a>
+<a class="btn" href="https://wa.me/628XXXXXXXXXX">WhatsApp</a>
+
+</section>
+
+<div class="container">
+
+<h2 class="section-title">Projects</h2>
+
+<div class="projects">
+
+<div class="project">
+<h3>Instagram Downloader</h3>
+<p>Website untuk download video dari Instagram.</p>
 </div>
 
-<script>
+<div class="project">
+<h3>Portfolio Website</h3>
+<p>Website portofolio pribadi modern.</p>
+</div>
 
-const bootText = [
-"Booting Brut4 System...",
-"Loading modules...",
-"Connecting server...",
-"Initializing hacker interface...",
-"Access granted...",
-"Welcome Brut4"
-]
+<div class="project">
+<h3>Future Project</h3>
+<p>Project baru akan datang.</p>
+</div>
 
-let i = 0
+</div>
 
-function boot(){
+</div>
 
-if(i < bootText.length){
+<footer>
 
-document.getElementById("boot").innerHTML += bootText[i] + "\n"
+© 2026 Brut4 Portfolio
 
-i++
-
-setTimeout(boot,700)
-
-}else{
-
-document.getElementById("boot").style.display="none"
-
-document.getElementById("terminal").style.display="block"
-
-document.getElementById("inputArea").style.display="block"
-
-}
-
-}
-
-boot()
-
-const terminal = document.getElementById("terminal")
-const input = document.getElementById("cmd")
-
-input.addEventListener("keydown",function(e){
-
-if(e.key === "Enter"){
-
-let command = input.value
-
-let line = document.createElement("div")
-line.className="line"
-line.textContent="> "+command
-
-terminal.appendChild(line)
-
-let res = document.createElement("div")
-res.className="line"
-
-if(command==="help"){
-res.textContent="about, skills, projects, contact"
-}
-
-else if(command==="about"){
-res.textContent="I am Brut4 learning web development."
-}
-
-else if(command==="skills"){
-res.textContent="HTML, CSS, JavaScript"
-}
-
-else if(command==="projects"){
-res.textContent="Instagram Downloader Website, Portfolio Website"
-}
-
-else if(command==="contact"){
-res.innerHTML='Instagram: <a href="https://instagram.com" style="color:#00ff9c">open</a>'
-}
-
-else{
-res.textContent="command not found"
-}
-
-terminal.appendChild(res)
-
-input.value=""
-
-window.scrollTo(0,document.body.scrollHeight)
-
-}
-
-})
-
-</script>
+</footer>
 
 </body>
 
